@@ -1,11 +1,8 @@
-<% title 'Listing DVD' %>
+<% title %Q{Listing reels for "#{parent}"} %>
 
 <% unless collection.all.blank? %>
-
   <%= table_for(collection) do |t| %>
-    <%= t.data :name, :actions => [:edit, :destroy] do %>
-      <% t.cell(:name) { |dvd| link_to(dvd, dvd_reels_path(dvd)) } %>
-    <% end %>
+    <%= t.data :name, :actions => [:edit, :destroy], :action_prefix => parent %>
   <% end %>
 
   <%= paginate(collection) %>
@@ -17,6 +14,6 @@
 <br/>
 
 <p>
-  <%= link_to 'New DVD', new_dvd_path, :class => 'button' %>
+  <%= link_to 'New Reel', new_dvd_reel_path(parent), :class => 'button' %>
 </p>
 
