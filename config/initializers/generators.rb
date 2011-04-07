@@ -1,4 +1,4 @@
-Rails3Base::Application.configure do
+DVD::Application.configure do
   config.generators do |g|
     g.stylesheets false
     g.helper false
