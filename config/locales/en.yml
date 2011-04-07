@@ -1,4 +1,7 @@
   en:
+    activerecord:
+      models:
+        dvd: DVD
     views:
       pagination:
         previous: "&#8592; Previous"
