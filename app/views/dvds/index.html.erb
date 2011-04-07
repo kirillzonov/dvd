@@ -1,0 +1,22 @@
+<% title 'Listing DVD' %>
+
+<% unless collection.all.blank? %>
+
+  <%= table_for(collection) do |t| %>
+    <%= t.data :name, :actions => [:edit, :destroy] do %>
+      <% t.cell(:name) { |dvd| link_to(dvd, dvd_reels_path(dvd)) } %>
+    <% end %>
+  <% end %>
+
+  <%= paginate(collection) %>
+<% else %>
+  <p>Now it's time to create some data here. To create new entry, please use the button below.</p>
+  <br/><br/>
+<% end %>
+
+<br/>
+
+<p>
+  <%= link_to 'New DVD', new_dvd_path, :class => 'button' %>
+</p>
+

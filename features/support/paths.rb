@@ -10,6 +10,9 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+    when /the new reel page/
+      new_reel_path
+
     when /the sign up page/
       new_user_registration_path
     when /the sign in page/

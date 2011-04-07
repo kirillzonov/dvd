@@ -1,0 +1,19 @@
+<% title %Q{Listing reels for "#{parent}"} %>
+
+<% unless collection.all.blank? %>
+  <%= table_for(collection) do |t| %>
+    <%= t.data :name, :actions => [:edit, :destroy], :action_prefix => parent %>
+  <% end %>
+
+  <%= paginate(collection) %>
+<% else %>
+  <p>Now it's time to create some data here. To create new entry, please use the button below.</p>
+  <br/><br/>
+<% end %>
+
+<br/>
+
+<p>
+  <%= link_to 'New Reel', new_dvd_reel_path(parent), :class => 'button' %>
+</p>
+
