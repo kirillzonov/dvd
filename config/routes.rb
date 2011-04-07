@@ -8,5 +8,7 @@ DVD::Application.routes.draw do
     get 'signup', :to => 'devise/registrations#new', :as => 'new_user_registration'
   end
 
+  resources :dvds
+
   root :to => 'dashboard#index'
 end
