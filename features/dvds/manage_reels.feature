@@ -41,3 +41,4 @@ Feature: Manage reels
     And I fill in "Name" with ""
     And I press "Update Reel"
     Then a reel should not exist with name: "Updated reel"
+

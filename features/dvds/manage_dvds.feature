@@ -35,4 +35,10 @@ Feature: Manage DVD
     And I am on the dvd's edit page
     And I fill in "Name" with ""
     And I press "Update DVD"
-    Then a dvd should exist with name: "Lord of the Rings"
+     Then a dvd should exist with name: "Lord of the Rings"
+
+  Scenario: Remove DVD
+    Given a dvd exists with name: "The Matrix"
+    And I am on the dvds page
+    When I follow "Delete DVD"
+    Then a dvd should not exist with name: "The Matrix"
