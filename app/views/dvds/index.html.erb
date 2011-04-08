@@ -2,16 +2,20 @@
 
 <% unless collection.all.blank? %>
 
-  <%= table_for(collection) do |t| %>
-    <%= t.data :name, :actions => [:edit, :destroy] do %>
-      <% t.cell(:name) { |dvd| link_to(dvd, dvd_reels_path(dvd)) } %>
-    <% end %>
+  <ul>
+    <% collection.each do |dvd| %>
+      <li id="dvd_<%=dvd.id%>">
+      <%= link_to dvd.name, dvd_reels_path(dvd) %>
+      <%= link_to 'Edit DVD', edit_dvd_path(dvd) %>
+      <%= link_to 'Delete DVD', dvd_path(dvd), :method => :delete %>
+      <%= render :template => 'reels/index', :locals => {:parent => dvd, :collection => dvd.reels} %>
+    </li>
   <% end %>
+</ul>
 
-  <%= paginate(collection) %>
 <% else %>
-  <p>Now it's time to create some data here. To create new entry, please use the button below.</p>
-  <br/><br/>
+  <p>There is no DVD. You can create one using the button below.</p>
+  <br/>
 <% end %>
 
 <br/>

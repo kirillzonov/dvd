@@ -1,19 +1,22 @@
 <% title %Q{Listing reels for "#{parent}"} %>
 
 <% unless collection.all.blank? %>
-  <%= table_for(collection) do |t| %>
-    <%= t.data :name, :actions => [:edit, :destroy], :action_prefix => parent %>
-  <% end %>
-
-  <%= paginate(collection) %>
+  <ul>
+    <% collection.each do |t| %>
+      <li id="reel_<%=t.id%>">
+        <%= t.name %>
+        <%= link_to 'Edit reel', edit_dvd_reel_path(parent,t) %>
+        <%= link_to 'Delete reel', dvd_reel_path(parent,t), :method => :delete %>
+      </li>
+    <% end %>
+  </ul>
 <% else %>
-  <p>Now it's time to create some data here. To create new entry, please use the button below.</p>
-  <br/><br/>
+  <p>There is no reels. You can create one using the button below.</p>
+  <br/>
 <% end %>
 
-<br/>
-
 <p>
-  <%= link_to 'New Reel', new_dvd_reel_path(parent), :class => 'button' %>
+  <%= link_to 'New Reel', new_dvd_reel_path(parent) %>
 </p>
+<br/>
 
