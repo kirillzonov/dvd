@@ -2,12 +2,12 @@
 
 <% unless collection.all.blank? %>
   <ul>
-    <% collection.each do |t| %>
-      <li id="reel_<%=t.id%>">
-        <%= t.name %>
-        <%= link_to 'Edit reel', edit_dvd_reel_path(parent,t) %>
-        <%= link_to 'Delete reel', dvd_reel_path(parent,t), :method => :delete %>
-      </li>
+    <% collection.each do |reel| %>
+      <%= content_tag_for (:li, reel) do %>
+        <%= reel.name %>
+        <%= link_to 'Edit reel', edit_dvd_reel_path(parent,reel) %>
+        <%= link_to 'Delete reel', dvd_reel_path(parent,reel), :method => :delete %>
+      <% end %>
     <% end %>
   </ul>
 <% else %>

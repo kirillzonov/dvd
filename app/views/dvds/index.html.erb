@@ -4,12 +4,12 @@
 
   <ul>
     <% collection.each do |dvd| %>
-      <li id="dvd_<%=dvd.id%>">
+        <%= content_tag_for (:li, dvd) do %>
       <%= link_to dvd.name, dvd_reels_path(dvd) %>
       <%= link_to 'Edit DVD', edit_dvd_path(dvd) %>
       <%= link_to 'Delete DVD', dvd_path(dvd), :method => :delete %>
       <%= render :template => 'reels/index', :locals => {:parent => dvd, :collection => dvd.reels} %>
-    </li>
+    <% end %>
   <% end %>
 </ul>
 
