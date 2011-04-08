@@ -1,4 +1,5 @@
 <%= content_tag_for(:li, reel) do %>
+  <span class="handle">[drag]</span>
   <%= reel.name %>
   <%= link_to 'Edit reel', edit_dvd_reel_path(parent, reel) %>
   <%= link_to 'Delete reel', dvd_reel_path(parent, reel), :method => :delete %>
