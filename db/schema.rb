@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110407160035) do
+ActiveRecord::Schema.define(:version => 20110408123245) do
 
   create_table "dvds", :force => true do |t|
     t.string   "name"
@@ -21,17 +21,12 @@ ActiveRecord::Schema.define(:version => 20110407160035) do
 
   add_index "dvds", ["user_id"], :name => "index_dvds_on_user_id"
 
-  create_table "posts", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "reels", :force => true do |t|
     t.string   "name"
     t.integer  "dvd_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "reels", ["dvd_id"], :name => "index_reels_on_dvd_id"
