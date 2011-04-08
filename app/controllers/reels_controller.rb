@@ -7,6 +7,10 @@ class ReelsController < ApplicationController
 
   protected
 
+  def collection_url
+    dvds_path
+  end
+
   def collection
     @reels ||= end_of_association_chain.page(params[:page])
   end

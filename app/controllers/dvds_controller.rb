@@ -5,6 +5,10 @@ class DvdsController < ApplicationController
 
   protected
 
+  def collection_url
+    dvds_path
+  end
+
   def create_resource(object)
     object.user = current_user
     object.save
