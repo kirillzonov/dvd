@@ -1,17 +1,28 @@
 <% title 'Listing DVD' %>
 
 <% unless collection.all.blank? %>
-
-  <ul>
+  <ul class="dvds">
     <% collection.each do |dvd| %>
-        <%= content_tag_for (:li, dvd) do %>
-      <%= link_to dvd.name, dvd_reels_path(dvd) %>
-      <%= link_to 'Edit DVD', edit_dvd_path(dvd) %>
-      <%= link_to 'Delete DVD', dvd_path(dvd), :method => :delete %>
-      <%= render :template => 'reels/index', :locals => {:parent => dvd, :collection => dvd.reels} %>
+      <%= content_tag_for(:li, dvd) do %>
+        <%= link_to dvd.name, dvd_reels_path(dvd) %>
+        <%= link_to 'Edit DVD', edit_dvd_path(dvd) %>
+        <%= link_to 'Delete DVD', dvd_path(dvd), :method => :delete %>
+
+        <ul class="reels">
+          <% unless collection.all.blank? %>
+            <%= render dvd.reels, :parent => dvd %>
+          <% else %>
+            <li>
+              There is no reels. You can create one using the button below.
+            </li>
+          <% end %>
+          <li>
+            <%= link_to 'New Reel', new_dvd_reel_path(dvd) %>
+          </li>
+        </ul>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
 
 <% else %>
   <p>There is no DVD. You can create one using the button below.</p>

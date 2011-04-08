@@ -2,16 +2,12 @@ class ReelsController < ApplicationController
   before_filter :authenticate_user!
   
   inherit_resources
-  actions :all, :except => [:show]
+  actions :all, :except => [:index, :show]
   belongs_to :dvd
 
   protected
 
-  def collection_url
+  def parent_url
     dvds_path
-  end
-
-  def collection
-    @reels ||= end_of_association_chain.page(params[:page])
   end
 end

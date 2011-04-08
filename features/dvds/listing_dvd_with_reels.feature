@@ -16,7 +16,6 @@ Feature: Listing DVD with reels
       | 3  | New reel 3 | dvd "Lord"   |
       | 4  | New reel 4 | dvd "Lord"   |
 
-
   Scenario:
     When I am on the dvds page
     Then I should see "The Matrix" within "#dvd_1"
