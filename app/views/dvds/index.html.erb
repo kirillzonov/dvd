@@ -1,13 +1,15 @@
 <% title 'Listing DVD' %>
 
 <% unless collection.all.blank? %>
-  <ul class="dvds">
+  <ul class="dvds list">
     <% collection.each do |dvd| %>
-      <%= content_tag_for(:li, dvd) do %>
-        <%= link_to dvd.name, dvd_reels_path(dvd) %>
-        <%= link_to 'Edit DVD', edit_dvd_path(dvd) %>
-        <%= link_to 'Delete DVD', dvd_path(dvd), :method => :delete %>
-
+	<%= content_tag_for(:li, dvd) do %>
+        <span class="link-title"><%= link_to dvd.name, dvd_reels_path(dvd) %></span>
+		<span class="tools">
+	        <span class="add_link"><%= link_to 'New Reel', new_dvd_reel_path(dvd) %></span>
+	        <span class="edit_link"><%= link_to 'Edit DVD', edit_dvd_path(dvd) %></span>
+	        <span class="destroy_link"><%= link_to 'Delete DVD', dvd_path(dvd), :method => :delete %></span>
+		</span>
         <ul class="reels">
           <% unless collection.all.blank? %>
             <%= render dvd.reels, :parent => dvd %>
@@ -16,9 +18,6 @@
               There is no reels. You can create one using the button below.
             </li>
           <% end %>
-          <li>
-            <%= link_to 'New Reel', new_dvd_reel_path(dvd) %>
-          </li>
         </ul>
       <% end %>
     <% end %>
