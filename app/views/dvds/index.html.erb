@@ -4,7 +4,7 @@
   <ul class="dvds list">
     <% collection.each do |dvd| %>
 	<%= content_tag_for(:li, dvd) do %>
-        <span class="link-title"><%= link_to dvd.name, dvd_reels_path(dvd) %></span>
+        <span class="link-title"><%= dvd.name %></span>
 		<span class="tools">
 	        <span class="add_link"><%= link_to 'New Reel', new_dvd_reel_path(dvd) %></span>
 	        <span class="edit_link"><%= link_to 'Edit DVD', edit_dvd_path(dvd) %></span>
