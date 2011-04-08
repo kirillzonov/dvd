@@ -9,7 +9,7 @@ DVD::Application.routes.draw do
   end
 
   resources :dvds do
-    resources :reels
+    resources :reels, :collection => { :sort => :post }
   end
 
   root :to => 'dvds#index'
