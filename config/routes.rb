@@ -12,5 +12,5 @@ DVD::Application.routes.draw do
     resources :reels
   end
 
-  root :to => 'dashboard#index'
+  root :to => 'dvds#index'
 end
