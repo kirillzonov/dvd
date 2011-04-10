@@ -1,16 +1,44 @@
 <% title 'Listing DVD' %>
 
 <% unless collection.all.blank? %>
-  <ul class="dvds list">
+  <ul class="dvds list" id="dvds">
     <% collection.each do |dvd| %>
-	<%= content_tag_for(:li, dvd) do %>
+      <%= content_tag_for(:li, dvd) do %>
         <span class="link-title"><%= dvd.name %></span>
-		<span class="tools">
-	        <span class="add_link"><%= link_to 'New Reel', new_dvd_reel_path(dvd) %></span>
-	        <span class="edit_link"><%= link_to 'Edit DVD', edit_dvd_path(dvd) %></span>
-	        <span class="destroy_link"><%= link_to 'Delete DVD', dvd_path(dvd), :method => :delete %></span>
-		</span>
-        <ul class="reels">
+        <span class="tools">
+          <span class="add_link"><%= link_to 'New Reel', new_dvd_reel_path(dvd) %></span>
+          <span class="edit_link"><%= link_to 'Edit DVD', edit_dvd_path(dvd) %></span>
+          <span class="destroy_link"><%= link_to 'Delete DVD', dvd_path(dvd), :method => :delete %></span>
+        </span>
+
+        <% content_for :javascript do %>
+          <%= javascript_tag do %>
+            // Sorting the list
+            $(document).ready(function(){
+            $('#reels').sortable({
+            axis: 'y',
+            dropOnEmpty: false,
+            handle: '.handle',
+            cursor: 'crosshair',
+            items: 'li',
+            opacity: 0.4,
+            scroll: true,
+            update: function(){
+            $.ajax({
+            type: 'post',
+            data: $('#reels').sortable('serialize'),
+            dataType: 'script',
+            complete: function(request){
+            $('#reels').effect('highlight');
+            },
+            url: '/dvds/<%=dvd.id%>/reels/sort'})
+            }
+            });
+            });
+          <% end %>
+        <% end %>
+
+        <ul class="reels" id="reels">
           <% unless collection.all.blank? %>
             <%= render dvd.reels, :parent => dvd %>
           <% else %>

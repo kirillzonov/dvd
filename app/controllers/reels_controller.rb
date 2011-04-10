@@ -5,6 +5,13 @@ class ReelsController < ApplicationController
   actions :all, :except => [:index, :show]
   belongs_to :dvd
 
+  def sort
+    params[:reel].each_with_index do |id, index|
+      Reel.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
+  end
+
   protected
 
   def parent_url

@@ -13,6 +13,7 @@ gem 'tabletastic', '0.2.2'
 gem 'flutie', '1.1.5'
 gem 'inherited_resources', '1.2.1'
 gem 'kaminari', '0.10.4'
+gem 'acts_as_list'
 
 group :test, :development do
   gem 'mongrel', '1.2.0.pre2'
