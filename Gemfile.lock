@@ -29,6 +29,7 @@ GEM
       activemodel (= 3.0.6)
       activesupport (= 3.0.6)
     activesupport (3.0.6)
+    acts_as_list (0.1.2)
     addressable (2.2.4)
     arel (2.0.9)
     autotest (4.4.6)
@@ -269,6 +270,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   autotest (= 4.4.6)
   autotest-rails (= 4.1.0)
   capybara (= 0.4.1.2)
