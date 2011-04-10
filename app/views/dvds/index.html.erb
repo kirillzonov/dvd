@@ -15,7 +15,7 @@
           <%= javascript_tag do %>
             // Sorting the list
             $(document).ready(function(){
-            $('#reels').sortable({
+            $('#reels_<%=dvd.id%>').sortable({
             axis: 'y',
             dropOnEmpty: false,
             handle: '.handle',
@@ -26,10 +26,10 @@
             update: function(){
             $.ajax({
             type: 'post',
-            data: $('#reels').sortable('serialize'),
+            data: $('#reels_<%=dvd.id%>').sortable('serialize'),
             dataType: 'script',
             complete: function(request){
-            $('#reels').effect('highlight');
+            $('#reels_<%=dvd.id%>').effect('highlight');
             },
             url: '/dvds/<%=dvd.id%>/reels/sort'})
             }
@@ -38,7 +38,7 @@
           <% end %>
         <% end %>
 
-        <ul class="reels" id="reels">
+        <ul class="reels" id="reels_<%=dvd.id%>">
           <% unless collection.all.blank? %>
             <%= render dvd.reels, :parent => dvd %>
           <% else %>
