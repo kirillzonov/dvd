@@ -1,4 +1,5 @@
 <%= content_tag_for(:li, reel) do %>
+  <span class="handle">[drag]</span>
   <span class="title"><%= reel.name %></span>
 	<span class="tools">
       <span class="edit_link"><%= link_to 'Edit reel', edit_dvd_reel_path(parent, reel) %></span>
