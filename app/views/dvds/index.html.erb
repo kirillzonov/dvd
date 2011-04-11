@@ -6,9 +6,12 @@
       <%= content_tag_for(:li, dvd) do %>
         <span class="link-title"><%= dvd.name %></span>
         <span class="tools">
-          <span class="add_link"><%= link_to 'New Reel', new_dvd_reel_path(dvd) %></span>
+          <span class="add_link" id=<%=dvd.id%>><a> 'New Reel'</a></span>
           <span class="edit_link"><%= link_to 'Edit DVD', edit_dvd_path(dvd) %></span>
           <span class="destroy_link"><%= link_to 'Delete DVD', dvd_path(dvd), :method => :delete %></span>
+          <div id="new_reel_<%=dvd.id%>" style="display: none;">
+            <%= render 'reels/form', :parent => dvd, :resource => dvd.reels.new %>
+          </div>
         </span>
 
         <% content_for :javascript do %>
@@ -62,3 +65,11 @@
   <%= link_to 'New DVD', new_dvd_path, :class => 'button' %>
 </p>
 
+<script>
+    $('.edit_link').click(function() {
+      $('div #reel_'+this.id).toggle();
+    });
+    $('.add_link').click(function() {
+      $('#new_reel_'+this.id).toggle();
+    });
+</script>
