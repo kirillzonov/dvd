@@ -1,6 +1,7 @@
 <%= semantic_form_for([parent, resource], :validate => true) do |form| %>
   <%= form.inputs do %>
     <%= form.input :name %>
+    <%= form.input :dvd %>
   <% end %>
 
   <%= form.buttons %> or <%= link_to 'cancel', dvds_path %>
