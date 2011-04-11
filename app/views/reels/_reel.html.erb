@@ -5,7 +5,7 @@
     <span class="edit_link" id=<%=reel.id%>><a>'Edit reel'</a></span>
     <span class="destroy_link"><%= link_to 'Delete reel', dvd_reel_path(parent, reel), :method => :delete %></span>
   </span>
-  <%= content_tag_for(:div, reel, :class => 'edit_reel', :style => 'display: none;') do %>
+  <div id="edit_reel_<%=reel.id%>" style="display: none;">
     <%= render 'reels/form', :parent => parent, :resource => reel %>
-  <% end %>
+  </div>
 <% end %>
