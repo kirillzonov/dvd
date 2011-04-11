@@ -7,10 +7,13 @@
         <span class="link-title"><%= dvd.name %></span>
         <span class="tools">
           <span class="add_link" id=<%=dvd.id%>><a> 'New Reel'</a></span>
-          <span class="edit_link"><%= link_to 'Edit DVD', edit_dvd_path(dvd) %></span>
+          <span class="edit_link" id=<%=dvd.id%>><a> 'Edit DVD'</a></span>
           <span class="destroy_link"><%= link_to 'Delete DVD', dvd_path(dvd), :method => :delete %></span>
           <div id="new_reel_<%=dvd.id%>" style="display: none;">
             <%= render 'reels/form', :parent => dvd, :resource => dvd.reels.new %>
+          </div>
+          <div id="edit_dvd_<%=dvd.id%>" style="display: none;">
+            <%= render 'dvds/form', :resource => dvd %>
           </div>
         </span>
 
@@ -62,10 +65,19 @@
 <br/>
 
 <p>
-  <%= link_to 'New DVD', new_dvd_path, :class => 'button' %>
+  <%= content_tag(:a, 'New DVD', :class => 'button', :id => 'new_dvd_button') %>
 </p>
+<div id="new_dvd" style="display: none;">
+  <%= render 'dvds/form', :resource => Dvd.new %>
+</div>
 
 <script>
+    $('.dvds .edit_link').click(function() {
+      $('#edit_dvd_'+this.id).toggle();
+    });
+    $('#new_dvd_button').click(function() {
+      $('#new_dvd').toggle();
+    });
     $('.reels .edit_link').click(function() {
       $('#edit_reel_'+this.id).toggle();
     });
