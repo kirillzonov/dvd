@@ -20,8 +20,9 @@
         <% content_for :javascript do %>
           <%= javascript_tag do %>
             // Sorting the list
-            $(document).ready(function(){
+            $(function(){
             $('#reels_<%=dvd.id%>').sortable({
+            connectWith: ".reels",
             axis: 'y',
             dropOnEmpty: false,
             handle: '.handle',

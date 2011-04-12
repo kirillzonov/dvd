@@ -8,6 +8,7 @@ class ReelsController < ApplicationController
   def sort
     params[:reel].each_with_index do |id, index|
       Reel.update_all(['position=?', index+1], ['id=?', id])
+      Reel.find(id).update_attribute(:dvd_id, params[:dvd_id])
     end
     render :nothing => true
   end
